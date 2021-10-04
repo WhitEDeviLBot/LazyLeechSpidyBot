@@ -26,7 +26,7 @@ LICHER_FOOTER = os.environ.get('LICHER_FOOTER', '').encode().decode('unicode_esc
 LICHER_PARSE_EPISODE = os.environ.get('LICHER_PARSE_EPISODE')
 LICHER_PARSE_EPISODE = LICHER_PARSE_EPISODE and LICHER_PARSE_EPISODE != '0'
 
-PROGRESS_UPDATE_DELAY = int(os.environ.get('PROGRESS_UPDATE_DELAY', 5))
+PROGRESS_UPDATE_DELAY = int(os.environ.get('PROGRESS_UPDATE_DELAY', 3))
 MAGNET_TIMEOUT = int(os.environ.get('LEECH_TIMEOUT', 60))
 LEECH_TIMEOUT = int(os.environ.get('LEECH_TIMEOUT', 300))
 ARIA2_SECRET = os.environ.get('ARIA2_SECRET', '')
