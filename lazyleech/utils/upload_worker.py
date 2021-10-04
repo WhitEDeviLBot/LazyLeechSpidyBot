@@ -274,10 +274,10 @@ async def progress_callback(current, total, client, message, reply, filename, us
                 upload_speed = '0 B'
             text = f'''Uploading {html.escape(filename)}...
 <code>{html.escape(return_progress_string(current, total))}</code>
-<b>Total Size:</b> {format_bytes(total)}
-<b>Uploaded Size:</b> {format_bytes(current)}
-<b>Upload Speed:</b> {upload_speed}/s
-<b>ETA:</b> {calculate_eta(current, total, start_time)}'''
+<b>➠ Total Size:</b> {format_bytes(total)}
+<b>➠ Uploaded Size:</b> {format_bytes(current)}
+<b>➠Upload Speed:</b> {upload_speed}/s
+<b>➠ ETA:</b> {calculate_eta(current, total, start_time)}'''
             if prevtext != text and reply.message_id in message_exists[reply.chat.id]:
                 async with message_exists_lock:
                     if reply.message_id not in message_exists[reply.chat.id]:
