@@ -278,7 +278,7 @@ async def handle_leech(client, message, gid, reply, user_id, flags):
             if task:
                 await task
 
-@Client.on_message(filters.command('list') & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command('list@MMLeechv5_bot') & filters.chat(ALL_CHATS))
 async def list_leeches(client, message):
     user_id = message.from_user.id
     text = ''
