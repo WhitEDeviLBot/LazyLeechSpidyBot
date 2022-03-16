@@ -92,7 +92,7 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
                     for file in torrent_info['files']:
                         zipf.write(file['path'], file['path'].replace(os.path.join(torrent_info['dir'], ''), '', 1))
             await asyncio.gather(reply.edit_text('Download successful, zipping files...'), client.loop.run_in_executor(None, _zip_files))
-            asyncio.create_task(reply.edit_text('📁<b>Downloaded Successful , Now Uploading Files...</b>'))
+            asyncio.create_task(reply.edit_text('<b>📤 Downloaded Successful , Now Uploading Files...</b>'))
             files[filepath] = filename
         else:
             for file in torrent_info['files']:
@@ -103,16 +103,16 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
                 files[filepath] = filename
         for filepath in natsorted(files):
             sent_files.extend(await _upload_file(client, message, reply, files[filepath], filepath, ForceDocumentFlag in flags))
-    text = '<b>📂 Your Requested Files 👇</b>\n\n'
+    text = '<b>📚 Your Requested Files 👇</b>\n\n'
     parser = pyrogram_html.HTML(client)
     quote = None
     first_index = None
     all_amount = 1
     for filename, filelink in sent_files:
         if filelink:
-            atext = f'<b>📭 Movie Name : <a href="{filelink}">{html.escape(filename)}</a></b>'
+            atext = f'<b>📂 Movie Name : <a href="{filelink}">{html.escape(filename)}</a></b>'
         else:
-            atext = f'<b>📭 Movie Name : {html.escape(filename)} (empty)</b>'
+            atext = f'<b>📂 Movie Name : {html.escape(filename)} (empty)</b>'
         atext += '\n\n'
         futtext = text + atext
         if all_amount > 100 or len((await parser.parse(futtext))['message']) > 4096:
@@ -126,13 +126,13 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
         all_amount += 1
         text = futtext
     if not sent_files:
-        text = '<b>📂 Your Upload Files 👇</b> None'
+        text = '<b>📚 Your Upload Files 👇</b> None'
     elif LICHER_CHAT and LICHER_STICKER and message.chat.id in ADMIN_CHATS:
         await client.send_sticker(LICHER_CHAT, LICHER_STICKER)
     thing = await message.reply_text(text, quote=quote, disable_web_page_preview=True)
     if first_index is None:
         first_index = thing
-    asyncio.create_task(reply.edit_text(f'<b>📤 Uploaded Successful 🤗\n\n📂 Your Files :</b> {first_index.link}', disable_web_page_preview=True))
+    asyncio.create_task(reply.edit_text(f'<b>📤 Uploaded Successful 🤗\n\n📚 Your Files :</b> {first_index.link}', disable_web_page_preview=True))
 
 async def _upload_file(client, message, reply, filename, filepath, force_document):
     if not os.path.getsize(filepath):
@@ -143,7 +143,7 @@ async def _upload_file(client, message, reply, filename, filepath, force_documen
     user_watermark = os.path.join(str(user_id), 'watermark.jpg')
     user_watermarked_thumbnail = os.path.join(str(user_id), 'watermarked_thumbnail.jpg')
     file_has_big = os.path.getsize(filepath) > 2097152000
-    upload_wait = await reply.reply_text(f'<b>📭 Movie Name : {html.escape(filename)} Will Start in {PROGRESS_UPDATE_DELAY}s</b>')
+    upload_wait = await reply.reply_text(f'<b>📂 Movie Name : {html.escape(filename)} Will Start in {PROGRESS_UPDATE_DELAY}s</b>')
     message_exists[upload_wait.chat.id].add(upload_wait.message_id)
     upload_identifier = (upload_wait.chat.id, upload_wait.message_id)
     async with upload_tamper_lock:
@@ -180,7 +180,7 @@ async def _upload_file(client, message, reply, filename, filepath, force_documen
                     if a:
                         async with upload_tamper_lock:
                             upload_waits.pop(upload_identifier)
-                            upload_wait = await reply.reply_text(f'<b>📭 Movie Name : {html.escape(filename)} Will Start in {PROGRESS_UPDATE_DELAY}s</b>')
+                            upload_wait = await reply.reply_text(f'<b>📂 Movie Name : {html.escape(filename)} Will Start in {PROGRESS_UPDATE_DELAY}s</b>')
                             upload_identifier = (upload_wait.chat.id, upload_wait.message_id)
                             upload_waits[upload_identifier] = user_id, worker_identifier
                         for _ in range(PROGRESS_UPDATE_DELAY):
@@ -272,7 +272,7 @@ async def progress_callback(current, total, client, message, reply, filename, us
                 upload_speed = format_bytes((total - current) / (time.time() - start_time))
             else:
                 upload_speed = '0 B'
-            text = f'''<b>📥 Movie Name : {html.escape(filename)}\n\n⏳ Status : Uploading 📥</b>\n
+            text = f'''<b>📂 Movie Name : {html.escape(filename)}\n\n⏳ Status : Uploading 📥</b>\n
 <b>{html.escape(return_progress_string(current, total))}</b>\n
 <b>➠ Total Size:</b> {format_bytes(total)}
 <b>➠ Uploaded Size:</b> {format_bytes(current)}
