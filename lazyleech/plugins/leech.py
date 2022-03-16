@@ -134,7 +134,7 @@ async def initiate_magnet(client, message, link, flags):
     else:
         await handle_leech(client, message, gid, reply, user_id, flags)
 
-@Client.on_message(filters.command(['leechvideo@MMLeechv5_bot', 'leechvideo@MMLeechv5_bot', 'leechZip@MMLeechv5_bot', 'leechZip@MMLeechv5_bot', 'leechfile@MMLeechv5_bot', 'leechfile@MMLeechv5_bot']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['leechvideo@MMLeech2bot', 'leechvideo@MMLeech2bot', 'leechZip@MMLeech2bot', 'leechZip@MMLeech2bot', 'leechfile@MMLeech2bot', 'leechfile@MMLeech2bot']) & filters.chat(ALL_CHATS))
 async def directdl_cmd(client, message):
     text = message.text.split(None, 1)
     command = text.pop(0).lower()
@@ -152,20 +152,20 @@ async def directdl_cmd(client, message):
         link = reply.text
     if not link:
         await message.reply_text('''Usage:
-- /leechvideo@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-- /leechvideo@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
-- /leechvideo@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-- /leechvideo@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
+- /leechvideo@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+- /leechvideo@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
+- /leechvideo@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+- /leechvideo@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
 
-- /leechZip@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-- /leechZip@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
-- /leechZip@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-- /leechZip@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
+- /leechZip@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+- /leechZip@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
+- /leechZip@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+- /leechZip@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
 
-- /leechfile@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
-- /leechfile@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
-- /leechfile@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
-- /leechfile@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files''')
+- /leechfile@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
+- /leechfile@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
+- /leechfile@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
+- /leechfile@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files''')
         return
     split = link.split('|', 1)
     if len(split) > 1:
@@ -231,7 +231,7 @@ async def handle_leech(client, message, gid, reply, user_id, flags):
             if not tor_name:
                 tor_name = urldecode(os.path.basename(urlparse(torrent_info['files'][0]['uris'][0]['uri']).path))
         text = f'''{html.escape(tor_name)}
-<code>{html.escape(return_progress_string(completed_length, total_length))}</code>
+<b>{html.escape(return_progress_string(completed_length, total_length))}</b>
 
 <b>➠ GID:</b> <code>{gid}</code>
 <b>➠ Status:</b> {status}
@@ -278,7 +278,7 @@ async def handle_leech(client, message, gid, reply, user_id, flags):
             if task:
                 await task
 
-@Client.on_message(filters.command('list@MMLeechv5_bot') & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command('list@MMLeech2bot') & filters.chat(ALL_CHATS))
 async def list_leeches(client, message):
     user_id = message.from_user.id
     text = ''
@@ -306,7 +306,7 @@ async def list_leeches(client, message):
         text = 'No leeches found.'
     await message.reply_text(text, quote=quote)
 
-@Client.on_message(filters.command('cancel@MMLeechv5_bot') & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command('cancel@MMLeech2bot') & filters.chat(ALL_CHATS))
 async def cancel_leech(client, message):
     user_id = message.from_user.id
     gid = None
@@ -371,22 +371,22 @@ help_dict['leech'] = ('Leech',
 /filemagnet <i>&lt;Magnet URL&gt;</i> - Sends videos as files
 /filemagnet <i>(as reply to a Magnet URL)</i> - Sends videos as files
 
-/leechvideo@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-/leechvideo@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
-/leechvideo@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-/leechvideo@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
+/leechvideo@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+/leechvideo@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
+/leechvideo@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+/leechvideo@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
 
-/leechZip@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-/leechZip@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
-/leechZip@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i>
-/leechZip@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i>
+/leechZip@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+/leechZip@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
+/leechZip@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i>
+/leechZip@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i>
 
-/leechfile@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
-/leechfile@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
-/leechfile@MMLeechv5_bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
-/leechfile@MMLeechv5_bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
+/leechfile@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
+/leechfile@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
+/leechfile@MMLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
+/leechfile@MMLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
 
-/cancel@MMLeechv5_bot <i>&lt;GID&gt;</i>
-/cancel@MMLeechv5_bot <i>(as reply to status message)</i>
+/cancel@MMLeech2bot <i>&lt;GID&gt;</i>
+/cancel@MMLeech2bot <i>(as reply to status message)</i>
 
-/list@MMLeechv5_bot - Lists all current leeches''')
+/list@MMLeech2bot - Lists all current leeches''')
