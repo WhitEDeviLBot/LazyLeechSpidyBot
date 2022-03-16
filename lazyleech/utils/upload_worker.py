@@ -136,7 +136,7 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
 
 async def _upload_file(client, message, reply, filename, filepath, force_document):
     if not os.path.getsize(filepath):
-        return [(os.path.basename(<b>filename</b>), None)]
+        return [(os.path.basename(filename), None)]
     worker_identifier = (reply.chat.id, reply.message_id)
     user_id = message.from_user.id
     user_thumbnail = os.path.join(str(user_id), 'thumbnail.jpg')
