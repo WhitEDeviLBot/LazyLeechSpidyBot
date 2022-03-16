@@ -20,7 +20,7 @@ from pyrogram import Client, filters
 from .. import ALL_CHATS, help_dict
 from ..utils.misc import convert_to_jpg, get_file_mimetype, watermark_photo
 
-@Client.on_message(filters.command(['savethumbnail@MMLeechv5_bot', 'savethumbnail@MMLeechv5_bot', 'savethumbnail@MMLeechv5_bot']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['savethumbnail@MMLeech2bot', 'savethumbnail@MMLeech2bot', 'savethumbnail@MMLeech2bot']) & filters.chat(ALL_CHATS))
 async def savethumbnail(client, message):
     reply = message.reply_to_message
     document = message.document
@@ -53,24 +53,24 @@ async def savethumbnail(client, message):
         watermarked_thumbnail = os.path.join(str(user_id), 'watermarked_thumbnail.jpg')
         if os.path.isfile(watermark):
             await watermark_photo(thumbnail_path, watermark, watermarked_thumbnail)
-        await message.reply_text('Thumbnail set')
+        await message.reply_text('<b>Thumbnail Saved ✅</b>')
     else:
         await message.reply_text('Cannot find thumbnail')
 
-@Client.on_message(filters.command(['clearthumbnail@MMLeechv5_bot', 'rmthumbnail', 'delthumbnail', 'removethumbnail', 'deletethumbnail']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['clearthumbnail@MMLeech2bot', 'rmthumbnail', 'delthumbnail', 'removethumbnail', 'deletethumbnail']) & filters.chat(ALL_CHATS))
 async def rmthumbnail(client, message):
     for path in ('thumbnail', 'watermarked_thumbnail'):
         path = os.path.join(str(message.from_user.id), f'{path}.jpg')
         if os.path.isfile(path):
             os.remove(path)
-    await message.reply_text('Thumbnail cleared')
+    await message.reply_text('<b>Thumbnail Cleared ❌</b>')
 
 help_dict['thumbnail'] = ('Thumbnail',
-'''/savethumbnail@MMLeechv5_bot <i>&lt;as reply to image or as a caption&gt;</i>
-/savethumbnail@MMLeechv5_bot <i>&lt;as reply to image or as a caption&gt;</i>
-/savethumbnail@MMLeechv5_bot <i>&lt;as reply to image or as a caption&gt;</i>
+'''/savethumbnail@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
+/savethumbnail@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
+/savethumbnail@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
 
-/clearthumbnail@MMLeechv5_bot
+/clearthumbnail@MMLeech2bot
 /rmthumbnail
 /removethumbnail
 /delthumbnail
