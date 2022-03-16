@@ -103,16 +103,16 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
                 files[filepath] = filename
         for filepath in natsorted(files):
             sent_files.extend(await _upload_file(client, message, reply, files[filepath], filepath, ForceDocumentFlag in flags))
-    text = 'Files:\n'
+    text = '📂 Your Upload Files 👇\n\n'
     parser = pyrogram_html.HTML(client)
     quote = None
     first_index = None
     all_amount = 1
     for filename, filelink in sent_files:
         if filelink:
-            atext = f'- <b><a href="{filelink}">{html.escape(filename)}</a></b>'
+            atext = f'- <a href="{filelink}">{html.escape(filename)}</a>'
         else:
-            atext = f'- <b>{html.escape(filename)} (empty)</b>'
+            atext = f'- {html.escape(filename)} (empty)'
         atext += '\n'
         futtext = text + atext
         if all_amount > 100 or len((await parser.parse(futtext))['message']) > 4096:
@@ -132,7 +132,7 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
     thing = await message.reply_text(text, quote=quote, disable_web_page_preview=True)
     if first_index is None:
         first_index = thing
-    asyncio.create_task(reply.edit_text(f'<b>📤 Uploaded Successful 🤗\n\n📂 Your Files : {first_index.link}</b>', disable_web_page_preview=True))
+    asyncio.create_task(reply.edit_text(f'<b>📤 Uploaded Successful 🤗\n\n📂 Your Files :</b> {first_index.link}', disable_web_page_preview=True))
 
 async def _upload_file(client, message, reply, filename, filepath, force_document):
     if not os.path.getsize(filepath):
