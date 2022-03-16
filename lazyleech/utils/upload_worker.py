@@ -43,7 +43,7 @@ async def upload_worker():
         try:
             message_identifier = (reply.chat.id, reply.message_id)
             if SendAsZipFlag not in flags:
-                asyncio.create_task(reply.edit_text('📁 <b>Downloaded Successful , Now Uploading Files...</b>'))
+                asyncio.create_task(reply.edit_text('<b>📤 Downloaded Successful , Now Uploading Files 🤒</b>'))
             task = asyncio.create_task(_upload_worker(client, message, reply, torrent_info, user_id, flags))
             upload_statuses[message_identifier] = task, user_id
             await task
@@ -272,7 +272,7 @@ async def progress_callback(current, total, client, message, reply, filename, us
                 upload_speed = format_bytes((total - current) / (time.time() - start_time))
             else:
                 upload_speed = '0 B'
-            text = f'''<b>📂 Movie Name : <code>{html.escape(filename)}</b>\n\n⏳ Status : Uploading 📥</b>\n
+            text = f'''<b>📂 Movie Name :</b> <code>{html.escape(filename)}</code>\n\n<b>⏳ Status : Uploading.. 📥</b>\n
 <b>{html.escape(return_progress_string(current, total))}</b>\n
 <b>➠ Total Size:</b> {format_bytes(total)}
 <b>➠ Uploaded Size:</b> {format_bytes(current)}
