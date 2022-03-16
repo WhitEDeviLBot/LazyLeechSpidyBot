@@ -110,9 +110,9 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
     all_amount = 1
     for filename, filelink in sent_files:
         if filelink:
-            atext = f'<b>📂 Movie Name : <a href="{filelink}">{html.escape(filename)}</a></b> \n\n💫 <b>Powered By : #MALLUMOVIES</b>'
+            atext = f'<b>📂 Movie Name : <a href="{filelink}">{html.escape(filename)}</a></b> \n\n💫 <b>Powered By : #WhitE_DeviL09</b>'
         else:
-            atext = f'<b>📂 Movie Name : {html.escape(filename)} (empty)</b> \n\n💫 <b>Powered By : #MALLUMOVIES</b>'
+            atext = f'<b>📂 Movie Name : {html.escape(filename)} (empty)</b> \n\n💫 <b>Powered By : #WhitE_DeviL09</b>'
         atext += '\n\n'
         futtext = text + atext
         if all_amount > 100 or len((await parser.parse(futtext))['message']) > 4096:
@@ -143,7 +143,7 @@ async def _upload_file(client, message, reply, filename, filepath, force_documen
     user_watermark = os.path.join(str(user_id), 'watermark.jpg')
     user_watermarked_thumbnail = os.path.join(str(user_id), 'watermarked_thumbnail.jpg')
     file_has_big = os.path.getsize(filepath) > 2097152000
-    upload_wait = await reply.reply_text(f'<b>📂 Movie Name : {html.escape(filename)} Will Start in {PROGRESS_UPDATE_DELAY}s</b>')
+    upload_wait = await reply.reply_text(f'<b>📂 Movie Name :</b> <code>{html.escape(filename)}</code> <b>Will Start in 🕰️ {PROGRESS_UPDATE_DELAY}s</b>')
     message_exists[upload_wait.chat.id].add(upload_wait.message_id)
     upload_identifier = (upload_wait.chat.id, upload_wait.message_id)
     async with upload_tamper_lock:
@@ -180,7 +180,7 @@ async def _upload_file(client, message, reply, filename, filepath, force_documen
                     if a:
                         async with upload_tamper_lock:
                             upload_waits.pop(upload_identifier)
-                            upload_wait = await reply.reply_text(f'<b>📂 Movie Name : {html.escape(filename)} Will Start in {PROGRESS_UPDATE_DELAY}s</b>')
+                            upload_wait = await reply.reply_text(f'<b>📂 Movie Name :</b> <code>{html.escape(filename)}</code> <b>Will Start in 🕰️ {PROGRESS_UPDATE_DELAY}s</b>')
                             upload_identifier = (upload_wait.chat.id, upload_wait.message_id)
                             upload_waits[upload_identifier] = user_id, worker_identifier
                         for _ in range(PROGRESS_UPDATE_DELAY):
