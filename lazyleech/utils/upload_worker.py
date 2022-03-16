@@ -103,16 +103,16 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
                 files[filepath] = filename
         for filepath in natsorted(files):
             sent_files.extend(await _upload_file(client, message, reply, files[filepath], filepath, ForceDocumentFlag in flags))
-    text = '📂 Your Upload Files 👇\n\n'
+    text = '<b>📂 Your Upload Files 👇</b>\n\n'
     parser = pyrogram_html.HTML(client)
     quote = None
     first_index = None
     all_amount = 1
     for filename, filelink in sent_files:
         if filelink:
-            atext = f'- <a href="{filelink}">{html.escape(filename)}</a>'
+            atext = f'<b>✅ <a href="{filelink}">{html.escape(filename)}</a></b>'
         else:
-            atext = f'- {html.escape(filename)} (empty)'
+            atext = f'<b>✅ {html.escape(filename)} (empty)</b>'
         atext += '\n'
         futtext = text + atext
         if all_amount > 100 or len((await parser.parse(futtext))['message']) > 4096:
@@ -126,7 +126,7 @@ async def _upload_worker(client, message, reply, torrent_info, user_id, flags):
         all_amount += 1
         text = futtext
     if not sent_files:
-        text = '<b>📂 Your Files :</b> None'
+        text = '<b>📂 Your Upload Files 👇</b> None'
     elif LICHER_CHAT and LICHER_STICKER and message.chat.id in ADMIN_CHATS:
         await client.send_sticker(LICHER_CHAT, LICHER_STICKER)
     thing = await message.reply_text(text, quote=quote, disable_web_page_preview=True)
@@ -272,7 +272,7 @@ async def progress_callback(current, total, client, message, reply, filename, us
                 upload_speed = format_bytes((total - current) / (time.time() - start_time))
             else:
                 upload_speed = '0 B'
-            text = f'''<b>📥 Yor File Uploading {html.escape(filename)}...</b>
+            text = f'''<b>📥 Yor File Uploading {html.escape(filename)}...</b>\n
 <b>{html.escape(return_progress_string(current, total))}</b>
 <b>➠ Total Size:</b> {format_bytes(total)}
 <b>➠ Uploaded Size:</b> {format_bytes(current)}
