@@ -225,8 +225,8 @@ async def _upload_file(client, message, reply, filename, filepath, force_documen
                                                            parse_mode=None, progress=progress_callback,
                                                            progress_args=progress_args)
                         else:
-                            resp = await reply.reply_document(filepath, thumb=thumbnail, caption="<b>"+filename+"</b>",
-                                                              parse_mode=html, progress=progress_callback,
+                            resp = await reply.reply_document(filepath, thumb=thumbnail, caption=filename,
+                                                              parse_mode=None, progress=progress_callback,
                                                               progress_args=progress_args)
                     except StopTransmission:
                         resp = None
