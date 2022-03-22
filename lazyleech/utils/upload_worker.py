@@ -220,12 +220,12 @@ async def _upload_file(client, message, reply, filename, filepath, force_documen
                                         break
                             else:
                                 width = height = 0
-                            resp = await reply.reply_video(filepath, thumb=thumbnail, caption=filename,
+                            resp = await reply.reply_video(filepath, thumb=thumbnail, caption=f'<b>{filename}</b>',
                                                            duration=duration, width=width, height=height,
                                                            parse_mode=None, progress=progress_callback,
                                                            progress_args=progress_args)
                         else:
-                            resp = await reply.reply_document(filepath, thumb=thumbnail, caption=filename,
+                            resp = await reply.reply_document(filepath, thumb=thumbnail, caption=f'<b>{filename}</b>',
                                                               parse_mode=None, progress=progress_callback,
                                                               progress_args=progress_args)
                     except StopTransmission:
