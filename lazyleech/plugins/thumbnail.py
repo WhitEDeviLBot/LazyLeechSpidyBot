@@ -57,7 +57,7 @@ async def savethumbnail(client, message):
     else:
         await message.reply_text('Cannot find thumbnail')
 
-@Client.on_message(filters.command(['clearthumbnail@MMLeech2bot', 'rmthumbnail', 'delthumbnail', 'removethumbnail', 'deletethumbnail']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['clearthumbnail@CPLeechbot', 'rmthumbnail', 'delthumbnail', 'removethumbnail', 'deletethumbnail']) & filters.chat(ALL_CHATS))
 async def rmthumbnail(client, message):
     for path in ('thumbnail', 'watermarked_thumbnail'):
         path = os.path.join(str(message.from_user.id), f'{path}.jpg')
