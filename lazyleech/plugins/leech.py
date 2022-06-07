@@ -134,7 +134,7 @@ async def initiate_magnet(client, message, link, flags):
     else:
         await handle_leech(client, message, gid, reply, user_id, flags)
 
-@Client.on_message(filters.command(['leechvideo@cpLeechbot', 'leechvideo@cpLeechbot', 'leechZip@cpLeechbot', 'leechZip@cpLeechbot', 'leechfile@cpLeechbot', 'leechfile@cpLeechbot']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['leechvideo@cpLeechbot', 'leechvideo@cpLeechbot', 'leechZip@cpLeechbot', 'leechZip@cpLeechbot', 'leechfile@cpLeech2bot', 'leechfile@cpLeech2bot']) & filters.chat(ALL_CHATS))
 async def directdl_cmd(client, message):
     text = message.text.split(None, 1)
     command = text.pop(0).lower()
@@ -162,10 +162,10 @@ async def directdl_cmd(client, message):
 - /leechZip@cpLeechbot <i>&lt;Direct URL&gt; | optional custom file name</i>
 - /leechZip@cpLeechbot <i>(as reply to a Direct URL) | optional custom file name</i>
 
-- /leechfile@cpLeechbot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
-- /leechfile@cpLeechbot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
-- /leechfile@cpLeechbot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
-- /leechfile@cpLeechbot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files''')
+- /leechfile@cpLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
+- /leechfile@cpLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files
+- /leechfile@cpLeech2bot <i>&lt;Direct URL&gt; | optional custom file name</i> - Sends videos as files
+- /leechfile@cpLeech2bot <i>(as reply to a Direct URL) | optional custom file name</i> - Sends videos as files''')
         return
     split = link.split('|', 1)
     if len(split) > 1:
