@@ -20,7 +20,7 @@ from pyrogram import Client, filters
 from .. import ALL_CHATS, help_dict
 from ..utils.misc import get_file_mimetype, watermark_photo
 
-@Client.on_message(filters.command(['setwatermark@MMLeech2bot', 'setwatermark@MMLeech2bot', 'savewatermark@MMLeech2bot']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['setwatermark@CPLeechbot', 'setwatermark@CPLeechbot', 'savewatermark@CPLeechbot']) & filters.chat(ALL_CHATS))
 async def savewatermark(client, message):
     reply = message.reply_to_message
     document = message.document
@@ -67,7 +67,7 @@ async def savewatermark(client, message):
     else:
         await message.reply_text('Cannot find watermark')
 
-@Client.on_message(filters.command(['clearwatermark@MMLeech2bot', 'rmwatermark', 'delwatermark', 'removewatermark', 'deletewatermark']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['clearwatermark@CPLeechbot', 'rmwatermark', 'delwatermark', 'removewatermark', 'deletewatermark']) & filters.chat(ALL_CHATS))
 async def rmwatermark(client, message):
     for path in ('watermark', 'watermarked_thumbnail'):
         path = os.path.join(str(message.from_user.id), f'{path}.jpg')
@@ -90,11 +90,11 @@ async def testwatermark(client, message):
         await message.reply_photo(to_upload)
 
 help_dict['watermark'] = ('Watermark',
-'''/setwatermark@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
-/setwatermark@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
-/savewatermark@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
+'''/setwatermark@CPLeechbot <i>&lt;as reply to image or as a caption&gt;</i>
+/setwatermark@CPLeechbot <i>&lt;as reply to image or as a caption&gt;</i>
+/savewatermark@CPLeechbot <i>&lt;as reply to image or as a caption&gt;</i>
 
-/clearwatermark@MMLeech2bot
+/clearwatermark@CPLeechbot
 /rmwatermark
 /removewatermark
 /delwatermark
