@@ -66,11 +66,11 @@ async def rmthumbnail(client, message):
     await message.reply_text('<b>Thumbnail Cleared ❌</b>')
 
 help_dict['thumbnail'] = ('Thumbnail',
-'''/savethumbnail@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
-/savethumbnail@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
-/savethumbnail@MMLeech2bot <i>&lt;as reply to image or as a caption&gt;</i>
+'''/savethumbnail@CPLeechbot <i>&lt;as reply to image or as a caption&gt;</i>
+/savethumbnail@CPLeechbot <i>&lt;as reply to image or as a caption&gt;</i>
+/savethumbnail@CPLeechbot <i>&lt;as reply to image or as a caption&gt;</i>
 
-/clearthumbnail@MMLeech2bot
+/clearthumbnail@CPLeechbot
 /rmthumbnail
 /removethumbnail
 /delthumbnail
