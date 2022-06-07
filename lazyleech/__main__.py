@@ -33,7 +33,7 @@ async def main():
                 tb = traceback.format_exc()
                 for i in ADMIN_CHATS:
                     try:
-                        await app.send_message(i, 'എന്നെ കൊല്ലുക ആണോ 😑 , കുറച്ച് കുറച്ച് ആയി ചെയി, ഞാൻ ഒരു ചെറിയ ബോട്ട് ആണ് 😁')
+                        await app.send_message(i, 'upload worker commited suicide')
                         await app.send_message(i, tb, parse_mode=None)
                     except Exception:
                         logging.exception('failed %s', i)
