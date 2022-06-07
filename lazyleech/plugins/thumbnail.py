@@ -20,7 +20,7 @@ from pyrogram import Client, filters
 from .. import ALL_CHATS, help_dict
 from ..utils.misc import convert_to_jpg, get_file_mimetype, watermark_photo
 
-@Client.on_message(filters.command(['savethumbnail@MMLeech2bot', 'savethumbnail@MMLeech2bot', 'savethumbnail@MMLeech2bot']) & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command(['savethumbnail@CPLeechbot', 'savethumbnail@CPLeechbot', 'savethumbnail@CPLeechbot']) & filters.chat(ALL_CHATS))
 async def savethumbnail(client, message):
     reply = message.reply_to_message
     document = message.document
