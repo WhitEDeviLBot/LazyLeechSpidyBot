@@ -75,7 +75,7 @@ async def rmwatermark(client, message):
             os.remove(path)
     await message.reply_text('<b>Watermark Cleared ❌</b>')
 
-@Client.on_message(filters.command('testwatermark@MMLeech2bot') & filters.chat(ALL_CHATS))
+@Client.on_message(filters.command('testwatermark@CPLeechbot') & filters.chat(ALL_CHATS))
 async def testwatermark(client, message):
     watermark = os.path.join(str(message.from_user.id), 'watermark.jpg')
     if not os.path.isfile(watermark):
@@ -100,4 +100,4 @@ help_dict['watermark'] = ('Watermark',
 /delwatermark
 /deletewatermark
 
-/testwatermark@MMLeechv5_bot''')
+/testwatermark@CPLeechbot''')
